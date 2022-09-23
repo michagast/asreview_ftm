@@ -86,7 +86,7 @@ class FTM(BaseFeatureExtraction):
             print('Currently at instance:', counter, '/', len(texts))
 
         # load in bag of words data
-        resultbow = pd.read_excel(r'C:\Users\MichaG\Documents\Scriptie\Data-main\bowdf1001_ftm.xlsx', index_col=[0])
+        resultbow = pd.read_excel(r'C:\Users\MichaG\Documents\Scriptie\Data-main\bowdf1001_ftm_subset.xlsx', index_col=[0])
         resultbow = resultbow.to_numpy()
 
 
