@@ -77,7 +77,7 @@ class FTM(BaseFeatureExtraction):
             #resultspecificwords = np.append(resultspecificwords, self.specific_words_check(text))
             #resultner = np.append(resultner, self.generate_named_entities(text), axis = 0)
             #resultstddevsentence = np.append(resultstddevsentence, self.standard_dev_sentence_length(text))
-            resultstddevwords = np.append(resultspecificwords, self.standard_dev_word_length(text))
+            resultstddevwords = np.append(resultstddevwords, self.standard_dev_word_length(text))
             #resultreadability = np.append(resultreadability, self.readability_index(text))
             resulttypetoken = np.append(resulttypetoken, self.type_token_ratio(text))
             #resultpropernouns = np.append(resultpropernouns, self.proper_nouns(text))
