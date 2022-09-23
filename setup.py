@@ -2,10 +2,10 @@ from setuptools import setup
 from setuptools import find_namespace_packages
 
 setup(
-    name='asreview-template-model-extension',
-    version='0.1',
-    description='Example classifier extension',
-    url='https://github.com/asreview/asreview',
+    name='ftm_feature_extractor',
+    version='1.0',
+    description='Example feature_extraction extension',
+    url='https://github.com/michagast/asreview_ftm',
     author='ASReview team',
     author_email='asreview@uu.nl',
     classifiers=[
@@ -14,20 +14,32 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.10'
     ],
     keywords='systematic review',
     packages=find_namespace_packages(include=['asreviewcontrib.*']),
-    python_requires='~=3.6',
+    python_requires='~=3.9',
     install_requires=[
         'sklearn',
-        'asreview>=0.13'
+        'torch',
+        'transformers',
+        'pyenchant',
+        'nltk',
+        'spacy',
+        'num2words',
+        'tensorflow',
+        'spacy'
+        #'spacy-legacy',
+        #'termcolor',
+
+
     ],
     entry_points={
         'asreview.models.classifiers': [
-            'nb_example = asreviewcontrib.models.nb_default_param:NaiveBayesDefaultParamsModel',
+            #
         ],
         'asreview.models.feature_extraction': [
-            # define feature_extraction algorithms
+            'enron = asreviewcontrib.models.ftm_fe:FTM',
         ],
         'asreview.models.balance': [
             # define balance strategy algorithms

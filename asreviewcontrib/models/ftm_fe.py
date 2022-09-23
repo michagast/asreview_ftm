@@ -1,4 +1,3 @@
-
 from asreview.models.feature_extraction.base import BaseFeatureExtraction
 import numpy as np
 
@@ -17,15 +16,9 @@ from nltk.corpus import stopwords
 from num2words import num2words
 import pickle
 
-
-
-
-import enchant                      #For BagOfWords feature
-from sklearn.feature_extraction.text import CountVectorizer #For BagOfWords feature
-
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoModelForTokenClassification, pipeline
 
-class Enron(BaseFeatureExtraction):
+class FTM(BaseFeatureExtraction):
     """Custom feature extraction
 
     Feature extraction that generates features based on sentiment values and named entity recogntion among other things.
