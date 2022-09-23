@@ -5,7 +5,7 @@
 
 
 [asreview.models.feature_extraction]
-enron = asreviewcontrib.models.ftm_fe:FTM
+ftm = asreviewcontrib.models.ftm_fe:FTM
 
 [asreview.models.query]
 
