@@ -44,7 +44,7 @@ class FTM(BaseFeatureExtraction):
         nltk.download('averaged_perceptron_tagger')
 
 
-        super(FTME, self).__init__(*args, **kwargs)
+        super(FTM, self).__init__(*args, **kwargs)
     #Todo refactor this so that no for loop is used
     #Todo remove hardcoded array reduction
     def transform(self, texts):
