@@ -1,1 +1,1 @@
-from asreviewcontrib.models.enron_fe import Enron
+from asreviewcontrib.models.ftm_fe import FTM

@@ -7,8 +7,6 @@ import torch                        #For running models with cude
 import nltk.data                    #For various things
 from nltk.tokenize import word_tokenize
 from collections import Counter
-from nltk.tag import pos_tag        #For finding proper nouns in text
-from PassivePySrc import PassivePy  #For detecting passive voice in sentences
 from tensorflow.keras.preprocessing.text import hashing_trick
 from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
@@ -29,23 +27,16 @@ class FTM(BaseFeatureExtraction):
 
     def __init__(self, *args, **kwargs):
         #Load in all required thing from packages.
-        self._model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased-finetuned-sst-2-english")
+        self._model = AutoModelForSequenceClassification.from_pretrained("pdelobelle/robbert-v2-dutch-base")
         self._model.eval() #make sure model is not in training mode
-        self._tokenizernlp = AutoTokenizer.from_pretrained("distilbert-base-uncased-finetuned-sst-2-english")
-        self._modelner = AutoModelForTokenClassification.from_pretrained("xlm-roberta-large-finetuned-conll03-english", return_dict=True)
-        self._modelner.eval() # make sure model is not in training mode
-        self._tokenizerner = AutoTokenizer.from_pretrained('xlm-roberta-large-finetuned-conll03-english')
+        self._tokenizernlp = AutoTokenizer.from_pretrained("pdelobelle/robbert-v2-dutch-base")
+        #self._modelner = AutoModelForTokenClassification.from_pretrained("xlm-roberta-large-finetuned-conll03-english", return_dict=True)
+        #self._modelner.eval() # make sure model is not in training mode
+        #self._tokenizerner = AutoTokenizer.from_pretrained('xlm-roberta-large-finetuned-conll03-english')
         self.vectorizer = CountVectorizer()
         spacy_model = "en_core_web_lg"
-        self.passivepy = PassivePy.PassivePyAnalyzer(spacy_model)
         #For use in the split into sentences function
-        self.alphabets = "([A-Za-z])"
-        self.prefixes = "(Mr|St|Mrs|Ms|Dr)[.]"
-        self.suffixes = "(Inc|Ltd|Jr|Sr|Co)"
-        self.starters = "(Mr|Mrs|Ms|Dr|He\s|She\s|It\s|They\s|Their\s|Our\s|We\s|But\s|However\s|That\s|This\s|Wherever)"
-        self.acronyms = "([A-Z][.][A-Z][.](?:[A-Z][.])?)"
-        self.websites = "[.](com|net|org|io|gov)"
-        self.dictionary = enchant.Dict("en_US")
+
 
 
         nltk.download('punkt')
@@ -81,21 +72,21 @@ class FTM(BaseFeatureExtraction):
             #text = ' '.join(text.split()[1:len(text.split())])
 
             counter = counter+1
-            #resultsentiment = np.append(resultsentiment, self.generatesentimentvalues(text))
+            resultsentiment = np.append(resultsentiment, self.generatesentimentvalues(text))
             resulttextlen = np.append(resulttextlen, self.gettextlength(text))
             #resultspecificwords = np.append(resultspecificwords, self.specific_words_check(text))
             #resultner = np.append(resultner, self.generate_named_entities(text), axis = 0)
             #resultstddevsentence = np.append(resultstddevsentence, self.standard_dev_sentence_length(text))
-            #resultstddevwords = np.append(resultspecificwords, self.standard_dev_word_length(text))
+            resultstddevwords = np.append(resultspecificwords, self.standard_dev_word_length(text))
             #resultreadability = np.append(resultreadability, self.readability_index(text))
             resulttypetoken = np.append(resulttypetoken, self.type_token_ratio(text))
             #resultpropernouns = np.append(resultpropernouns, self.proper_nouns(text))
-            resultpassivevoice = np.append(resultpassivevoice, self.percentage_passive_voice(text))
+            #resultpassivevoice = np.append(resultpassivevoice, self.percentage_passive_voice(text))
             #resultactivevoice = np.append(resultactivevoice, self.percentage_active_voice(text))
             print('Currently at instance:', counter, '/', len(texts))
 
         # load in bag of words data
-        resultbow = pd.read_excel(r'C:\Users\MichaG\Documents\Scriptie\Data-main\bowdf1001.xlsx', index_col=[0])
+        resultbow = pd.read_excel(r'C:\Users\MichaG\Documents\Scriptie\Data-main\bowdf1001_ftm.xlsx', index_col=[0])
         resultbow = resultbow.to_numpy()
 
 
@@ -115,7 +106,7 @@ class FTM(BaseFeatureExtraction):
 
         #Concatenate all arrays into one final array
         #result = np.hstack((resultsentiment, resulttextlen, resultspecificwords, resultstddevsentence, resultstddevwords[0:1596], resultreadability, resultpassivevoice, resultactivevoice, resulttypetoken, result_bow, resultner))
-        result = np.hstack((resulttextlen, resultpassivevoice, resulttypetoken, resultbow))
+        result = np.hstack((resulttextlen, resultsentiment, resulttypetoken, resultstddevwords, resultbow))
         print(result.shape[0])
         return result
 
