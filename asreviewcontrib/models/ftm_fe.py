@@ -22,8 +22,8 @@ class FTM(BaseFeatureExtraction):
     Feature extraction that generates features based on sentiment values and named entity recogntion among other things.
     """
 
-    name = "enron"
-    label = "Enron feature extraction"
+    name = "FTM"
+    label = "FTM feature extraction"
 
     def __init__(self, *args, **kwargs):
         #Load in all required thing from packages.
