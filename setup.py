@@ -39,7 +39,7 @@ setup(
             #
         ],
         'asreview.models.feature_extraction': [
-            'enron = asreviewcontrib.models.ftm_fe:FTM',
+            'ftm = asreviewcontrib.models.ftm_fe:FTM',
         ],
         'asreview.models.balance': [
             # define balance strategy algorithms

@@ -22,7 +22,7 @@ class FTM(BaseFeatureExtraction):
     Feature extraction that generates features based on sentiment values and named entity recogntion among other things.
     """
 
-    name = "FTM"
+    name = "ftm"
     label = "FTM feature extraction"
 
     def __init__(self, *args, **kwargs):
@@ -44,7 +44,7 @@ class FTM(BaseFeatureExtraction):
         nltk.download('averaged_perceptron_tagger')
 
 
-        super(Enron, self).__init__(*args, **kwargs)
+        super(FTME, self).__init__(*args, **kwargs)
     #Todo refactor this so that no for loop is used
     #Todo remove hardcoded array reduction
     def transform(self, texts):
