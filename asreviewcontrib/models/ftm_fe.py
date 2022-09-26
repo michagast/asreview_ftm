@@ -39,9 +39,9 @@ class FTM(BaseFeatureExtraction):
 
 
 
-        nltk.download('punkt')
-        nltk.download('stopwords')
-        nltk.download('averaged_perceptron_tagger')
+        #nltk.download('punkt')
+        #nltk.download('stopwords')
+        #nltk.download('averaged_perceptron_tagger')
 
 
         super(FTM, self).__init__(*args, **kwargs)
