@@ -27,10 +27,14 @@ class FTM(BaseFeatureExtraction):
 
     def __init__(self, *args, **kwargs):
         #Load in all required thing from packages.
-        if not self._model:
+        try:
+            self._model
+        except:
             self._model = AutoModelForSequenceClassification.from_pretrained("pdelobelle/robbert-v2-dutch-base")
             self._model.eval() #make sure model is not in training mode
-        if not self._tokenizernlp:
+        try:
+            self._tokenizernlp          
+        except:
             self._tokenizernlp = AutoTokenizer.from_pretrained("pdelobelle/robbert-v2-dutch-base")
         #self._modelner = AutoModelForTokenClassification.from_pretrained("xlm-roberta-large-finetuned-conll03-english", return_dict=True)
         #self._modelner.eval() # make sure model is not in training mode
