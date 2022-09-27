@@ -26,6 +26,7 @@ class FTM(BaseFeatureExtraction):
     label = "FTM feature extraction"
 
     def __init__(self, *args, **kwargs):
+        self._model, self._tokenizernlp = None,None
         #Load in all required thing from packages.
         #self._modelner = AutoModelForTokenClassification.from_pretrained("xlm-roberta-large-finetuned-conll03-english", return_dict=True)
         #self._modelner.eval() # make sure model is not in training mode
@@ -108,9 +109,11 @@ class FTM(BaseFeatureExtraction):
         return result
 
     def generatesentimentvalues(self, text):
-        self._model = AutoModelForSequenceClassification.from_pretrained("pdelobelle/robbert-v2-dutch-base")
-        self._model.eval()  # make sure model is not in training mode
-        self._tokenizernlp = AutoTokenizer.from_pretrained("pdelobelle/robbert-v2-dutch-base")
+        if not self._model:
+            self._model = AutoModelForSequenceClassification.from_pretrained("pdelobelle/robbert-v2-dutch-base")
+            self._model.eval()  # make sure model is not in training mode
+        if not self._tokenizernlp:
+            self._tokenizernlp = AutoTokenizer.from_pretrained("pdelobelle/robbert-v2-dutch-base")
 
         ''' Function that generates the sentiment value for the specific text
         '''
