@@ -2,10 +2,10 @@ from setuptools import setup
 from setuptools import find_namespace_packages
 
 setup(
-    name='ftm_feature_extractor',
+    name='news_feature_extractor',
     version='1.0',
     description='Example feature_extraction extension',
-    url='https://github.com/michagast/asreview_ftm',
+    url='https://github.com/michagast/asreview_news',
     author='ASReview team',
     author_email='asreview@uu.nl',
     classifiers=[
@@ -39,7 +39,7 @@ setup(
             #
         ],
         'asreview.models.feature_extraction': [
-            'ftm = asreviewcontrib.models.ftm_fe:FTM',
+            'news = asreviewcontrib.models.news_fe:News',
         ],
         'asreview.models.balance': [
             # define balance strategy algorithms

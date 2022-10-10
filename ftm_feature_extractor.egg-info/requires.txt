@@ -1,9 +1,0 @@
-sklearn
-torch
-transformers
-pyenchant
-nltk
-spacy
-num2words
-tensorflow
-spacy

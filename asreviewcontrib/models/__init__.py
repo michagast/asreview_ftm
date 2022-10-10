@@ -1,1 +1,1 @@
-from asreviewcontrib.models.ftm_fe import FTM
+from asreviewcontrib.models.news_fe import News
