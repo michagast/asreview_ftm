@@ -16,14 +16,14 @@ import pickle
 
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoModelForTokenClassification, pipeline
 
-class News(BaseFeatureExtraction):
+class FTM(BaseFeatureExtraction):
     """Custom feature extraction
 
     Feature extraction that generates features based on sentiment values and named entity recogntion among other things.
     """
 
-    name = "news"
-    label = "Dutch news feature extraction"
+    name = "ftm"
+    label = "FTM feature extraction"
 
     def __init__(self, *args, **kwargs):
         self._model, self._tokenizernlp = None,None
@@ -42,7 +42,7 @@ class News(BaseFeatureExtraction):
         #nltk.download('averaged_perceptron_tagger')
 
 
-        super(News, self).__init__(*args, **kwargs)
+        super(FTM, self).__init__(*args, **kwargs)
     #Todo refactor this so that no for loop is used
     #Todo remove hardcoded array reduction
     def transform(self, texts):

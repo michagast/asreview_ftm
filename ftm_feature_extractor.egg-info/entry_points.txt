@@ -1,0 +1,12 @@
+[asreview.models.balance]
+
+
+[asreview.models.classifiers]
+
+
+[asreview.models.feature_extraction]
+ftm = asreviewcontrib.models.ftm_fe:FTM
+
+[asreview.models.query]
+
+
